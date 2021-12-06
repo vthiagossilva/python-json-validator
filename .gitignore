@@ -1,0 +1,9 @@
+.git
+.git/
+.idea/
+.idea
+.vscode
+.vscode/
+*.pyc
+__pycache__
+__pycache__/

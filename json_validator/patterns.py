@@ -16,6 +16,16 @@ def momento():
     }
 
 
+def data(optional: bool = False):
+    return {
+        "type": str,
+        "regex": r"^20[1-2][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) [0-5][0-9]:[0-5][0-9]$",
+        "message": "deve ser <String> no formato AAAA-MM-DD hh:mm",
+        "moment_format": "%Y-%m-%d %H:%M",
+        "optional": optional,
+    }
+
+
 def regex(r: str, optional: bool = False):
     return {
         "type": str,

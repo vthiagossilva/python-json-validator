@@ -13,7 +13,7 @@ def __validate_schema(
         is_new: bool = False,
         result_type = int
 ) -> (dict, Any):
-    assert isinstance(result_type, (int, bool))
+    assert result_type in (int, bool)
 
     try:
         if not isinstance(data, dict):
@@ -81,6 +81,10 @@ def __validate_schema(
                 result, s_code = __validate_schema(value, schema["schema"], is_new)
                 if s_code != 200:
                     return result, s_code
+
+            if schema.get("action"):
+                func = schema["action"]
+                data[key] = func(data[key])
 
         return data, result_type == bool or 200
     except ValidationError as err:

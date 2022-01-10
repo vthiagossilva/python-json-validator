@@ -1,3 +1,6 @@
+from typing import Iterable
+
+
 def sigla(digits = 2):
     return {
         "type": str,
@@ -7,7 +10,7 @@ def sigla(digits = 2):
     }
 
 
-def momento():
+def moment():
     return {
         "type": str,
         "regex": r"^20[1-2][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) [0-5][0-9]:[0-5][0-9]$",
@@ -16,7 +19,7 @@ def momento():
     }
 
 
-def data(optional: bool = False):
+def date(optional: bool = False):
     return {
         "type": str,
         "regex": r"^20[1-2][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) [0-5][0-9]:[0-5][0-9]$",
@@ -43,7 +46,7 @@ def value(optional: bool = False, only_int: bool = False):
     }
 
 
-def text(min_len: int = 2, max_len: int = None, optional: bool = False):
+def string(min_len: int = 1, max_len: int = None, optional: bool = False):
     return {
         "type": str,
         "min_len": min_len,
@@ -53,7 +56,7 @@ def text(min_len: int = 2, max_len: int = None, optional: bool = False):
     }
 
 
-def choices(choices: list, optional: bool = False, upper: bool = False, type_choice: tuple = None):
+def choices(choices: Iterable, optional: bool = False, type_choice: tuple = None):
     if type_choice is None:
         type_choice = type(choices[0]), str(type(choices[0]))
     else:
@@ -63,7 +66,6 @@ def choices(choices: list, optional: bool = False, upper: bool = False, type_cho
     return {
         "type": type_choice[0],
         "choices": choices,
-        "upper": upper,
         "optional": optional,
         "message": f"deve ser {type_choice[1]} entre: {', '.join(choices)}"
     }

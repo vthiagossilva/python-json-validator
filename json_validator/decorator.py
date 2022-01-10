@@ -8,7 +8,7 @@ def validate_schema(
         schema: dict,
         key: str = "data",
         is_new: bool = True,
-        result_type=int,
+        result_type = int,
 ):
     def real_decorator(f):
         if iscoroutine(f):

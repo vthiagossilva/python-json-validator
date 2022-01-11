@@ -10,7 +10,7 @@ from json_validator.important import valid_cpf
 def __validate_schema(
         data: dict,
         Schema: dict,
-        is_new: bool = False,
+        is_new: bool = True,
         result_type = int
 ) -> (dict, Any):
     assert result_type in (int, bool)
@@ -28,7 +28,7 @@ def __validate_schema(
             try:
                 schema = Schema[key]
             except KeyError:
-                raise ValidationError(f'"{key}" não existe no schema "{value["name"]}"')
+                raise ValidationError(f'"{key}" não existe no schema')
 
             if not isinstance(value, schema["type"]) or (
                 schema.get("choices") and value not in schema["choices"]

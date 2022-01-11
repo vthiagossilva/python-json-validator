@@ -8,22 +8,15 @@ def validate_schema(
         schema: dict,
         key: str = "data",
         is_new: bool = True,
-        result_type = int,
+        result_type: str = int,
 ):
     def real_decorator(f):
-        if iscoroutine(f):
-            @wraps(f)
-            async def wrapper(*a, **kw):
-                r, s = __validate_schema(kw[key], schema, is_new, result_type)
-                if not s:
-                    return r, s
-                return await f(*a, **kw)
-        else:
-            def wrapper(*a, **kw):
-                r, s = __validate_schema(kw[key], schema, is_new, result_type)
-                if not s:
-                    return r, s
-                return f(*a, **kw)
+        @wraps(f)
+        async def wrapper(*a, **kw):
+            r, s = __validate_schema(kw[key], schema, is_new, result_type)
+            if s not in (True, 200):
+                return r, s
+            return await f(*a, **kw)
 
         return wrapper
     return real_decorator

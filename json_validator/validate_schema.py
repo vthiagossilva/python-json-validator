@@ -3,8 +3,8 @@ from datetime import datetime
 from typing import Any
 
 from json_validator.exceptions import ValidationError
-from json_validator.important.valid_cnpj import valid_cnpj
-from json_validator.important.valid_cpf import valid_cpf
+from json_validator.important import valid_cnpj
+from json_validator.important import valid_cpf
 
 
 def __validate_schema(

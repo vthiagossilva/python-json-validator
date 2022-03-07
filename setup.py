@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name="json_validator",
     python_requires=">=3.6",
-    version="0.0.2",
+    version="0.0.3",
     license="MIT",
     description="Simples criador e validador de schema para JSON",
     author="Thiago Silva",

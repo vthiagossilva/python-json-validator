@@ -21,8 +21,11 @@ def __validate_schema(
 
         if is_new:
             for (key, schema) in Schema.items():
-                if not schema.get("optional") and key not in data.keys():
-                    raise ValidationError(f'"{key}" é requerido')
+                if not schema.get("optional"):
+                    if key not in data.keys() and not schema.get("default"):
+                        raise ValidationError(f'"{key}" é requerido')
+                    elif schema.get("default"):
+                        data[key] = schema["default"]
 
         for (key, value) in data.items():
             try:
@@ -88,4 +91,4 @@ def __validate_schema(
 
         return data, result_type == bool or 200
     except ValidationError as err:
-        return {"error": err.__str__()}, False if result_type == bool else 400
+        return {"error": err.__str__()}, False if result_type == bool else 422

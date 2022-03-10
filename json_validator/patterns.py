@@ -25,7 +25,7 @@ def moment(action = None, default = None, optional: bool = False):
 def date(action = None, default = None, optional: bool = False):
     return {
         "type": str,
-        "regex": r"^20[1-2][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$",
+        "regex": r"^(19[0-9][0-9]|20[0-2][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$",
         "message": "deve ser <String> no formato AAAA-MM-DD",
         "moment_format": "%Y-%m-%d",
         "action": action,
